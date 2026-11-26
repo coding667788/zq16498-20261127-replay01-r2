@@ -1,0 +1,162 @@
+{
+  "case_id": "隔离档案柜-arrange-01",
+  "partitions": [
+    {
+      "id": "PA",
+      "protection": 0,
+      "writable": true,
+      "capacity": 2
+    },
+    {
+      "id": "PB",
+      "protection": 0,
+      "writable": true,
+      "capacity": 4
+    },
+    {
+      "id": "PC",
+      "protection": 1,
+      "writable": true,
+      "capacity": 4
+    }
+  ],
+  "manifests": {
+    "old": {
+      "roots": {
+        "i1": "r1",
+        "i2": "r2",
+        "i3": "r3"
+      },
+      "slots": {
+        "r1": {
+          "kind": "index",
+          "children": [
+            "o1"
+          ],
+          "protection": 0
+        },
+        "o1": {
+          "kind": "block",
+          "content": "o1",
+          "digest": "sha256:2352da7280f1decc3acf1ba84eb945c9fc2b7b541094e1d0992dbffd1b6664cc",
+          "partition": "PA",
+          "protection": 0,
+          "size": 1
+        },
+        "r2": {
+          "kind": "index",
+          "children": [
+            "o2"
+          ],
+          "protection": 0
+        },
+        "o2": {
+          "kind": "block",
+          "content": "o2",
+          "digest": "sha256:9250b9912ee91d6b46e23299459ecd6eb8154451d62558a3a0a708a77926ad04",
+          "partition": "PA",
+          "protection": 0,
+          "size": 1
+        },
+        "r3": {
+          "kind": "index",
+          "children": [
+            "o3"
+          ],
+          "protection": 1
+        },
+        "o3": {
+          "kind": "block",
+          "content": "o3",
+          "digest": "sha256:de2d91dc0a2580414e9a70f7dfc76af727b69cac0838f2cbe0a88d12642efcbf",
+          "partition": "PC",
+          "protection": 0,
+          "size": 1
+        }
+      }
+    },
+    "new": {
+      "roots": {
+        "i1": "r1n",
+        "i2": "r2n",
+        "i3": "r3n"
+      },
+      "slots": {
+        "r1n": {
+          "kind": "index",
+          "children": [
+            "n1"
+          ],
+          "protection": 0
+        },
+        "n1": {
+          "kind": "block",
+          "content": "n1",
+          "digest": "sha256:676b8bb84ce7267dd520deca4811c8f10a53e636352f06987f42fe425acedd80",
+          "partition": "PA",
+          "protection": 0,
+          "size": 1
+        },
+        "r2n": {
+          "kind": "index",
+          "children": [
+            "n2"
+          ],
+          "protection": 0
+        },
+        "n2": {
+          "kind": "block",
+          "content": "n2",
+          "digest": "sha256:0480a93d2e9b094b89e08e01976089ac18193af802c66b631cc8d2dc1bae8c88",
+          "partition": "PA",
+          "protection": 0,
+          "size": 1
+        },
+        "r3n": {
+          "kind": "index",
+          "children": [
+            "n3"
+          ],
+          "protection": 1
+        },
+        "n3": {
+          "kind": "block",
+          "content": "n3",
+          "digest": "sha256:8721d664ef60096aa559e1aa6c72caf1facf5ce08b03aa6921ed9af5645d5466",
+          "partition": "PC",
+          "protection": 0,
+          "size": 1
+        }
+      }
+    }
+  },
+  "retained_snapshots": [
+    {
+      "version": "old",
+      "index": "i3"
+    }
+  ],
+  "switches": [
+    {
+      "action_id": "sw_b",
+      "index": "i2",
+      "slot": "n2",
+      "old_slot": "o2",
+      "home": "PA"
+    },
+    {
+      "action_id": "sw_a",
+      "index": "i1",
+      "slot": "n1",
+      "old_slot": "o1",
+      "home": "PA"
+    },
+    {
+      "action_id": "sw_c",
+      "index": "i3",
+      "slot": "n3",
+      "old_slot": "o3",
+      "home": "PC"
+    }
+  ]
+}

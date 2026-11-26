@@ -1,0 +1,116 @@
+{
+  "case_id": "隔离档案柜-ok-01",
+  "partitions": [
+    {
+      "id": "P0",
+      "protection": 0,
+      "writable": true,
+      "capacity": 10
+    },
+    {
+      "id": "P1",
+      "protection": 1,
+      "writable": true,
+      "capacity": 10
+    }
+  ],
+  "manifests": {
+    "old": {
+      "roots": {
+        "main": "r"
+      },
+      "slots": {
+        "r": {
+          "kind": "index",
+          "children": [
+            "a",
+            "b"
+          ],
+          "protection": 0
+        },
+        "a": {
+          "kind": "block",
+          "content": "alpha",
+          "digest": "sha256:8ed3f6ad685b959ead7022518e1af76cd816f8e8ec7ccdda1ed4018e8f2223f8",
+          "partition": "P0",
+          "protection": 0,
+          "size": 1
+        },
+        "b": {
+          "kind": "block",
+          "content": "beta",
+          "digest": "sha256:f44e64e75f3948e9f73f8dfa94721c4ce8cbb4f265c4790c702b2d41cfbf2753",
+          "partition": "P1",
+          "protection": 1,
+          "size": 1
+        }
+      }
+    },
+    "new": {
+      "roots": {
+        "main": "r2"
+      },
+      "slots": {
+        "r2": {
+          "kind": "index",
+          "children": [
+            "a",
+            "a2",
+            "b2"
+          ],
+          "protection": 0
+        },
+        "a": {
+          "kind": "block",
+          "content": "alpha",
+          "digest": "sha256:8ed3f6ad685b959ead7022518e1af76cd816f8e8ec7ccdda1ed4018e8f2223f8",
+          "partition": "P0",
+          "protection": 0,
+          "size": 1
+        },
+        "a2": {
+          "kind": "block",
+          "content": "alpha",
+          "digest": "sha256:8ed3f6ad685b959ead7022518e1af76cd816f8e8ec7ccdda1ed4018e8f2223f8",
+          "partition": "P0",
+          "protection": 0,
+          "size": 1
+        },
+        "b2": {
+          "kind": "block",
+          "content": "BETA2",
+          "digest": "sha256:9f67bd9c2095169617ce109c77a2f6f140d7887dc2a5d92bc4738c8f69e1a49c",
+          "partition": "P1",
+          "protection": 1,
+          "size": 1
+        }
+      }
+    }
+  },
+  "retained_snapshots": [],
+  "trace": [
+    {
+      "id": "t1",
+      "op": "stage",
+      "slot": "b2",
+      "partition": "P1"
+    },
+    {
+      "id": "t2",
+      "op": "stage",
+      "slot": "a2",
+      "partition": "P0"
+    },
+    {
+      "id": "t3",
+      "op": "commit_root",
+      "index": "main",
+      "to": "new"
+    },
+    {
+      "id": "t4",
+      "op": "release",
+      "slot": "b"
+    }
+  ]
+}

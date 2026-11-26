@@ -1,0 +1,71 @@
+{
+  "case_id": "隔离档案柜-protection-01",
+  "partitions": [
+    {
+      "id": "PL",
+      "protection": 0,
+      "writable": true,
+      "capacity": 10
+    },
+    {
+      "id": "PH",
+      "protection": 1,
+      "writable": true,
+      "capacity": 10
+    }
+  ],
+  "manifests": {
+    "old": {
+      "roots": {
+        "main": "r"
+      },
+      "slots": {
+        "r": {
+          "kind": "index",
+          "children": [
+            "x"
+          ],
+          "protection": 1
+        },
+        "x": {
+          "kind": "block",
+          "content": "x",
+          "digest": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+          "partition": "PH",
+          "protection": 0,
+          "size": 1
+        }
+      }
+    },
+    "new": {
+      "roots": {
+        "main": "r2"
+      },
+      "slots": {
+        "r2": {
+          "kind": "index",
+          "children": [
+            "x2"
+          ],
+          "protection": 1
+        },
+        "x2": {
+          "kind": "block",
+          "content": "x2",
+          "digest": "sha256:844ecc08164e2eab27634a9adee1afa6599e589570e719784e080ce747fc0e45",
+          "partition": "PH",
+          "protection": 0,
+          "size": 1
+        }
+      }
+    }
+  },
+  "trace": [
+    {
+      "id": "p1",
+      "op": "stage",
+      "slot": "x2",
+      "partition": "PL"
+    }
+  ]
+}

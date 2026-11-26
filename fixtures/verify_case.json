@@ -1,0 +1,148 @@
+{
+  "case_id": "隔离档案柜-verify-01",
+  "partitions": [
+    {
+      "id": "P",
+      "protection": 0,
+      "writable": true,
+      "capacity": 64
+    }
+  ],
+  "manifests": {
+    "old": {
+      "roots": {
+        "i1": "rA",
+        "i2": "rB"
+      },
+      "slots": {
+        "rA": {
+          "kind": "index",
+          "children": [
+            "X",
+            "A1"
+          ],
+          "protection": 0
+        },
+        "rB": {
+          "kind": "index",
+          "children": [
+            "X",
+            "B1"
+          ],
+          "protection": 0
+        },
+        "X": {
+          "kind": "block",
+          "content": "shared-X",
+          "digest": "sha256:9a08dc37e92c77983595987954425d1d0028cbdbca16b2dbdef5e926b347a462",
+          "partition": "P",
+          "protection": 0,
+          "size": 1
+        },
+        "A1": {
+          "kind": "block",
+          "content": "a1",
+          "digest": "sha256:f55ff16f66f43360266b95db6f8fec01d76031054306ae4a4b380598f6cfd114",
+          "partition": "P",
+          "protection": 0,
+          "size": 1
+        },
+        "B1": {
+          "kind": "block",
+          "content": "b1",
+          "digest": "sha256:7dc96f776c8423e57a2785489a3f9c43fb6e756876d6ad9a9cac4aa4e72ec193",
+          "partition": "P",
+          "protection": 0,
+          "size": 1
+        }
+      }
+    },
+    "new": {
+      "roots": {
+        "i1": "rA2",
+        "i2": "rB2"
+      },
+      "slots": {
+        "rA2": {
+          "kind": "index",
+          "children": [
+            "X2"
+          ],
+          "protection": 0
+        },
+        "rB2": {
+          "kind": "index",
+          "children": [
+            "X3"
+          ],
+          "protection": 0
+        },
+        "X2": {
+          "kind": "block",
+          "content": "x2",
+          "digest": "sha256:844ecc08164e2eab27634a9adee1afa6599e589570e719784e080ce747fc0e45",
+          "partition": "P",
+          "protection": 0,
+          "size": 1
+        },
+        "X3": {
+          "kind": "block",
+          "content": "x3",
+          "digest": "sha256:844b69c4d54cc264bc2dadb6bb70f53bc123beafc0f58d81ed8cd4a07c24a5a7",
+          "partition": "P",
+          "protection": 0,
+          "size": 1
+        },
+        "b_bad": {
+          "kind": "block",
+          "content": "tampered",
+          "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+          "partition": "P",
+          "protection": 0,
+          "size": 1
+        }
+      }
+    }
+  },
+  "trace": [
+    {
+      "id": "v1",
+      "op": "stage",
+      "slot": "X2",
+      "partition": "P"
+    },
+    {
+      "id": "v2",
+      "op": "commit_root",
+      "index": "i1",
+      "to": "new"
+    },
+    {
+      "id": "v3",
+      "op": "stage",
+      "slot": "X3",
+      "partition": "P"
+    },
+    {
+      "id": "v4",
+      "op": "commit_root",
+      "index": "i2",
+      "to": "new"
+    },
+    {
+      "id": "v5",
+      "op": "release",
+      "slot": "X"
+    },
+    {
+      "id": "v6",
+      "op": "release",
+      "slot": "A1"
+    },
+    {
+      "id": "v7",
+      "op": "release",
+      "slot": "B1"
+    }
+  ]
+}
